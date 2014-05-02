@@ -1,6 +1,6 @@
 # TimeCompact
 
-Show time in compact style.
+Displays time compactly.
 
 for example:
 

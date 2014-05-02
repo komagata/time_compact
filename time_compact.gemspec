@@ -8,8 +8,8 @@ Gem::Specification.new do |spec|
   spec.version       = TimeCompact::VERSION
   spec.authors       = ["Masaki Komagata"]
   spec.email         = ["komagata@gmail.com"]
-  spec.summary       = %q{Show time shortly.}
-  spec.description   = %q{Show time for compact style.}
+  spec.summary       = %q{Displays time compactly.}
+  spec.description   = %q{Displays time compactly.}
   spec.homepage      = "https://github.com/komagata/time_compact"
   spec.license       = "MIT"
 
