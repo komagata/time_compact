@@ -12,7 +12,7 @@ module TimeCompact
         if time.day == now.day
           if time.hour == now.hour
             ::I18n.t(
-              'same_hour',
+              'time_compact.same_hour',
               year:  time.year,
               month: time.month,
               day:   time.day,
@@ -21,7 +21,7 @@ module TimeCompact
             )
           else
             ::I18n.t(
-              'same_day',
+              'time_compact.same_day',
               year:  time.year,
               month: time.month,
               day:   time.day,
@@ -31,7 +31,7 @@ module TimeCompact
           end
         else
           ::I18n.t(
-            'same_month',
+            'time_compact.same_month',
             year:  time.year,
             month: time.month,
             day:   time.day,
@@ -41,7 +41,7 @@ module TimeCompact
         end
       else
         ::I18n.t(
-          'same_year',
+          'time_compact.same_year',
           year:  time.year,
           month: time.month,
           day:   time.day,
@@ -51,7 +51,7 @@ module TimeCompact
       end
     else
       ::I18n.t(
-        'other',
+        'time_compact.other',
         year:  time.year,
         month: time.month,
         day:   time.day,

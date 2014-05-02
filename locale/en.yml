@@ -1,6 +1,7 @@
 en:
-  same_year:  '%{month}/%{day}'
-  same_month: '%{month}/%{day}'
-  same_day:   '%{hour}:%{min}'
-  same_hour:  '%{min} min'
-  other:      '%{year}/%{month}/%{day}'
+  time_compact:
+    same_year:  '%{month}/%{day}'
+    same_month: '%{month}/%{day}'
+    same_day:   '%{hour}:%{min}'
+    same_hour:  '%{min} min'
+    other:      '%{year}/%{month}/%{day}'

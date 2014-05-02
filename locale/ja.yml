@@ -1,6 +1,7 @@
 ja:
-  same_year:  '%{month}月%{day}日'
-  same_month: '%{day}日'
-  same_day:   '%{hour}時%{min}分'
-  same_hour:  '%{min}分'
-  other:      '%{year}年%{month}月%{day}日'
+  time_compact:
+    same_year:  '%{month}月%{day}日'
+    same_month: '%{day}日'
+    same_day:   '%{hour}時%{min}分'
+    same_hour:  '%{min}分'
+    other:      '%{year}年%{month}月%{day}日'
