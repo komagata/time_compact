@@ -1,6 +1,18 @@
 # TimeCompact
 
-TODO: Write a gem description
+Show time in compact style.
+
+for example:
+
+    # default locale
+    2014/1/2 # when other year.
+    1/2      # when same year.
+    8:16     # when same day.
+
+    # 日本語ロケール
+    2014年1月2日 # 違う年の時
+    1月2日       # 同じ年の時
+    8時16分      # 同じ日の時
 
 ## Installation
 
@@ -18,7 +30,14 @@ Or install it yourself as:
 
 ## Usage
 
-TODO: Write usage instructions here
+    require 'time_compact'
+
+    include TimeCompact
+    time_compact Time.new(2014, 1, 1, 0, 0, 0) # => 5/2
+
+In rails
+
+    <%= time_compact @post.created_at %>
 
 ## Contributing
 
