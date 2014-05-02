@@ -39,6 +39,17 @@ In rails
 
     <%= time_compact @post.created_at %>
 
+You can customize the format.
+
+    # config/locales/en.yml:
+    en:
+      time_compact:
+        same_year:  '%{month}/%{day}'
+        same_month: '%{month}/%{day}'
+        same_day:   '%{hour}:%{min}'
+        same_hour:  '%{min} min'
+        other:      '%{year}/%{month}/%{day}'
+
 ## Contributing
 
 1. Fork it ( https://github.com/[my-github-username]/time_compact/fork )
