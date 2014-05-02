@@ -1,3 +1,5 @@
+require_relative 'time_compact/version'
+require_relative 'time_compact/railtie' if defined? Rails
 require 'i18n'
 
 module TimeCompact

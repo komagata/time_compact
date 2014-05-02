@@ -1,6 +1,3 @@
-require 'time_compact/version'
-require 'time_compact/railtie' if defined? Rails
-
 module TimeCompact                  
   class Railtie < ::Rails::Railtie
     initializer 'time_compact' do |app|  

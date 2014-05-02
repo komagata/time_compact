@@ -4,11 +4,12 @@ require_relative '../lib/time_compact'
 
 class TestTimeCompact < MiniTest::Unit::TestCase
   def setup
-    @object = Object.new 
+    @object = Object.new
     @object.extend TimeCompact
   end
 
-  def test_time_compact
+  def test_time_compact_en
+    I18n.locale = 'en'
     assert_equal '2014/1/1', @object.time_compact(
       Time.new(2014, 1, 1, 0, 0, 0),
       Time.new(2015, 1, 1, 0, 0, 0)
