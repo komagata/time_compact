@@ -22,7 +22,7 @@ class TestTimeCompact < MiniTest::Unit::TestCase
       Time.new(2014, 1, 1, 0, 0, 0),
       Time.new(2014, 1, 2, 0, 0, 0)
     )
-    assert_equal '0:0', @object.time_compact(
+    assert_equal '0:00', @object.time_compact(
       Time.new(2014, 1, 1, 0, 0, 0),
       Time.new(2014, 1, 1, 1, 0, 0)
     )
@@ -46,7 +46,7 @@ class TestTimeCompact < MiniTest::Unit::TestCase
       Time.new(2014, 1, 1, 0, 0, 0),
       Time.new(2014, 1, 2, 0, 0, 0)
     )
-    assert_equal '0時0分', @object.time_compact(
+    assert_equal '0時00分', @object.time_compact(
       Time.new(2014, 1, 1, 0, 0, 0),
       Time.new(2014, 1, 1, 1, 0, 0)
     )

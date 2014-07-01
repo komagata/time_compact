@@ -26,7 +26,7 @@ module TimeCompact
               month: time.month,
               day:   time.day,
               hour:  time.hour,
-              min:   time.min
+              min:   '%02d' % time.min
             )
           end
         else
@@ -36,7 +36,7 @@ module TimeCompact
             month: time.month,
             day:   time.day,
             hour:  time.hour,
-            min:   time.min
+            min:   '%02d' % time.min
           )
         end
       else
@@ -46,7 +46,7 @@ module TimeCompact
           month: time.month,
           day:   time.day,
           hour:  time.hour,
-          min:   time.min
+          min:   '%02d' % time.min
         )
       end
     else
@@ -56,7 +56,7 @@ module TimeCompact
         month: time.month,
         day:   time.day,
         hour:  time.hour,
-        min:   time.min
+        min:   '%02d' % time.min
       )
     end
   end
