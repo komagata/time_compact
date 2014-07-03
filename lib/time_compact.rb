@@ -4,35 +4,28 @@ require 'i18n'
 require 'yaml'
 
 module TimeCompact
-  LOCALE_DIR = File.expand_path('../../locale', __FILE__)
-
   def time_compact(time, now = Time.now)
+    locale_dir = File.expand_path('../../locale', __FILE__)
     I18n.enforce_available_locales = true
-    I18n.load_path += Dir[LOCALE_DIR + '/*.yml']
+    I18n.load_path += Dir["#{locale_dir}/*.yml"]
+    messages = I18n.t('time_compact')
 
     if time.year == now.year
       if time.month == now.month
         if time.day == now.day
           if time.hour == now.hour
-            time.strftime(fetch_locale('same_hour'))
+            time.strftime(messages[:same_hour])
           else
-            time.strftime(fetch_locale('same_day'))
+            time.strftime(messages[:same_day])
           end
         else
-          time.strftime(fetch_locale('same_month'))
+          time.strftime(messages[:same_month])
         end
       else
-        time.strftime(fetch_locale('same_year'))
+        time.strftime(messages[:same_year])
       end
     else
-      time.strftime(fetch_locale('other'))
+      time.strftime(messages[:other])
     end
-  end
-
-  private
-
-  def fetch_locale(name)
-    yml = YAML.load_file("#{LOCALE_DIR}/#{I18n.locale}.yml")
-    yml[I18n.locale.to_s]['time_compact'][name]
   end
 end
