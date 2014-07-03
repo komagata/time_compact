@@ -1,3 +1,4 @@
+# encoding: utf-8
 require 'minitest/autorun'
 require 'minitest/unit'
 require_relative '../lib/time_compact'
