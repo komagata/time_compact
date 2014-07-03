@@ -5,9 +5,9 @@ Displays time compactly.
 for example:
 
     # default locale
-    2014/1/2 # when other year.
-    1/2      # when same year.
-    8:16     # when same day.
+    2014/1/2 # on other year.
+    1/2      # on same year.
+    8:16     # on same day.
 
     # 日本語ロケール
     2014年1月2日 # 違う年の時
@@ -44,11 +44,20 @@ You can customize the format.
     # config/locales/en.yml:
     en:
       time_compact:
-        same_year:  '%{month}/%{day}'
-        same_month: '%{month}/%{day}'
-        same_day:   '%{hour}:%{min}'
-        same_hour:  '%{min} min'
-        other:      '%{year}/%{month}/%{day}'
+        same_year:  '%1m/%1d'
+        same_month: '%1m/%1d'
+        same_day:   '%1H:%M'
+        same_hour:  '%1M min'
+        other:      '%Y/%1m/%1d'
+
+    # config/locales/ja.yml:
+    ja:
+      time_compact:
+        same_year:  '%1m月%1d日'
+        same_month: '%1d日'
+        same_day:   '%1H時%1M分'
+        same_hour:  '%1M分'
+        other:      '%Y年%1m月%1d日'
 
 ## Contributing
 

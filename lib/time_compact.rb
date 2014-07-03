@@ -1,63 +1,38 @@
 require_relative 'time_compact/version'
 require_relative 'time_compact/railtie' if defined? Rails
 require 'i18n'
+require 'yaml'
 
 module TimeCompact
+  LOCALE_DIR = File.expand_path('../../locale', __FILE__)
+
   def time_compact(time, now = Time.now)
-    locale_dir = File.expand_path('../../locale', __FILE__)
-    ::I18n.load_path += Dir[locale_dir + "/*.yml"]
+    I18n.enforce_available_locales = true
+    I18n.load_path += Dir[LOCALE_DIR + '/*.yml']
 
     if time.year == now.year
       if time.month == now.month
         if time.day == now.day
           if time.hour == now.hour
-            ::I18n.t(
-              'time_compact.same_hour',
-              year:  time.year,
-              month: time.month,
-              day:   time.day,
-              hour:  time.hour,
-              min:   time.min
-            )
+            time.strftime(fetch_locale('same_hour'))
           else
-            ::I18n.t(
-              'time_compact.same_day',
-              year:  time.year,
-              month: time.month,
-              day:   time.day,
-              hour:  time.hour,
-              min:   '%02d' % time.min
-            )
+            time.strftime(fetch_locale('same_day'))
           end
         else
-          ::I18n.t(
-            'time_compact.same_month',
-            year:  time.year,
-            month: time.month,
-            day:   time.day,
-            hour:  time.hour,
-            min:   '%02d' % time.min
-          )
+          time.strftime(fetch_locale('same_month'))
         end
       else
-        ::I18n.t(
-          'time_compact.same_year',
-          year:  time.year,
-          month: time.month,
-          day:   time.day,
-          hour:  time.hour,
-          min:   '%02d' % time.min
-        )
+        time.strftime(fetch_locale('same_year'))
       end
     else
-      ::I18n.t(
-        'time_compact.other',
-        year:  time.year,
-        month: time.month,
-        day:   time.day,
-        hour:  time.hour,
-        min:   '%02d' % time.min
-      )
+      time.strftime(fetch_locale('other'))
     end
+  end
+
+  private
+
+  def fetch_locale(name)
+    yml = YAML.load_file("#{LOCALE_DIR}/#{I18n.locale}.yml")
+    yml[I18n.locale.to_s]['time_compact'][name]
   end
 end
