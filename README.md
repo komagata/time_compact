@@ -1,6 +1,6 @@
 # TimeCompact
 
-[<img src="https://secure.travis-ci.org/komagata/time_compact.png"/>](http://travis-ci.org/komagata/time_compact)
+![TravisCI Build Status](https://secure.travis-ci.org/komagata/time_compact.png)
 
 Displays time compactly.
 
