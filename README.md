@@ -1,5 +1,7 @@
 # TimeCompact
 
+[<img src="https://secure.travis-ci.org/komagata/time_compact.png"/>](http://travis-ci.org/komagata/time_compact)
+
 Displays time compactly.
 
 for example:
