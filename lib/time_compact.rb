@@ -14,7 +14,7 @@ module TimeCompact
     locale_dir = File.expand_path('../../locale', __FILE__)
     I18n.enforce_available_locales = true
     I18n.load_path += Dir["#{locale_dir}/*.yml"]
-    messages = I18n.t(time_compact_locale_key(options[:i18n_key_prefix]))
+    messages = I18n.t(time_compact_i18n_key(options[:i18n_key_prefix]))
 
     if time.year == now.year
       if time.month == now.month
@@ -48,7 +48,7 @@ module TimeCompact
     end
   end
 
-  def time_compact_locale_key(prefix = '')
+  def time_compact_i18n_key(prefix = '')
     ['time_compact', prefix].reject(&:empty?).join('.')
   end
 end

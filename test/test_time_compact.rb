@@ -142,11 +142,11 @@ class TestTimeCompact < MiniTest::Test
                  'time and options hash are passed'
   end
 
-  def test_time_compact_locale_key
-    assert_equal 'time_compact', @object.send(:time_compact_locale_key),
+  def test_time_compact_i18n_key
+    assert_equal 'time_compact', @object.send(:time_compact_i18n_key),
                  'no prefix'
     assert_equal 'time_compact.prefix',
-                 @object.send(:time_compact_locale_key, 'prefix'),
+                 @object.send(:time_compact_i18n_key, 'prefix'),
                  'with prefix'
   end
 end
