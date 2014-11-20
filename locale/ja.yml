@@ -5,3 +5,9 @@ ja:
     same_day:   '%1H時%1M分'
     same_hour:  '%1M分'
     other:      '%Y年%1m月%1d日'
+    verbose:
+      same_year:  '%1m月%1d日 %1H時%1M分'
+      same_month: '%1d日 %1H時%1M分'
+      same_day:   '%1H時%1M分'
+      same_hour:  '%1M分'
+      other:      '%Y年%1m月%1d日 %1H時%1M分'

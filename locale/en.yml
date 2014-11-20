@@ -5,3 +5,9 @@ en:
     same_day:   '%1H:%M'
     same_hour:  '%1M min'
     other:      '%Y/%1m/%1d'
+    verbose:
+      same_year:  '%1m/%1d %1H:%M'
+      same_month: '%1m/%1d %1H:%M'
+      same_day:   '%1H:%M'
+      same_hour:  '%1M min'
+      other:      '%Y/%1m/%1d %1H:%M'

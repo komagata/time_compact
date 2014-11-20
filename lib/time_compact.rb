@@ -4,11 +4,17 @@ require 'i18n'
 require 'yaml'
 
 module TimeCompact
-  def time_compact(time, now = Time.now)
+  def time_compact(time, *args)
+    now, options = time_compact_process_optional_args(args)
+
+    options = {
+      i18n_key_prefix: ''
+    }.merge(options)
+
     locale_dir = File.expand_path('../../locale', __FILE__)
     I18n.enforce_available_locales = true
     I18n.load_path += Dir["#{locale_dir}/*.yml"]
-    messages = I18n.t('time_compact')
+    messages = I18n.t(time_compact_locale_key(options[:i18n_key_prefix]))
 
     if time.year == now.year
       if time.month == now.month
@@ -27,5 +33,22 @@ module TimeCompact
     else
       time.strftime(messages[:other])
     end
+  end
+
+  private
+
+  def time_compact_process_optional_args(args)
+    case args[0]
+    when Time, DateTime
+      [args[0], args[1] || {}]
+    when Hash
+      [Time.now, args[0]]
+    else
+      [Time.now, {}]
+    end
+  end
+
+  def time_compact_locale_key(prefix = '')
+    ['time_compact', prefix].reject(&:empty?).join('.')
   end
 end
