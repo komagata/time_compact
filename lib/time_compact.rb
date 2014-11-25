@@ -4,17 +4,17 @@ require 'i18n'
 require 'yaml'
 
 module TimeCompact
-  def time_compact(time, *args)
-    now, options = time_compact_process_optional_args(args)
+  def time_compact(time, *options)
+    now, opts = time_compact_process_optional_args(options)
 
-    options = {
+    opts = {
       i18n_key_prefix: ''
-    }.merge(options)
+    }.merge(opts)
 
     locale_dir = File.expand_path('../../locale', __FILE__)
     I18n.enforce_available_locales = true
     I18n.load_path += Dir["#{locale_dir}/*.yml"]
-    messages = I18n.t(time_compact_i18n_key(options[:i18n_key_prefix]))
+    messages = I18n.t(time_compact_i18n_key(opts[:i18n_key_prefix]))
 
     if time.year == now.year
       if time.month == now.month
