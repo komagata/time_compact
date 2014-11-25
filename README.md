@@ -88,7 +88,7 @@ en:
 
 ```
 # in the view
-<%= time_compact(Time.now, i18n_key_prefix: :verbose) %>
+<%= time_compact(@post.created_at, i18n_key_prefix: :verbose) %>
 ```
 
 ## Contributing
