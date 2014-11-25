@@ -40,27 +40,27 @@ class TestTimeCompact < MiniTest::Test
     assert_equal '2014/1/1 0:00', @object.time_compact(
       Time.new(2014, 1, 1, 0, 0, 0),
       Time.new(2015, 1, 1, 0, 0, 0),
-      i18n_key_prefix: 'verbose'
+      i18n_key_prefix: :verbose
     ), 'defferent year'
     assert_equal '1/1 0:00', @object.time_compact(
       Time.new(2014, 1, 1, 0, 0, 0),
       Time.new(2014, 2, 1, 0, 0, 0),
-      i18n_key_prefix: 'verbose'
+      i18n_key_prefix: :verbose
     ), 'same year'
     assert_equal '1/1 0:00', @object.time_compact(
       Time.new(2014, 1, 1, 0, 0, 0),
       Time.new(2014, 1, 2, 0, 0, 0),
-      i18n_key_prefix: 'verbose'
+      i18n_key_prefix: :verbose
     ), 'same month'
     assert_equal '0:00', @object.time_compact(
       Time.new(2014, 1, 1, 0, 0, 0),
       Time.new(2014, 1, 1, 1, 0, 0),
-      i18n_key_prefix: 'verbose'
+      i18n_key_prefix: :verbose
     ), 'same day'
     assert_equal '0 min', @object.time_compact(
       Time.new(2014, 1, 1, 0, 0, 0),
       Time.new(2014, 1, 1, 0, 1, 0),
-      i18n_key_prefix: 'verbose'
+      i18n_key_prefix: :verbose
     ), 'same hour'
   end
 

@@ -49,6 +49,6 @@ module TimeCompact
   end
 
   def time_compact_i18n_key(prefix = '')
-    ['time_compact', prefix].reject(&:empty?).join('.')
+    ['time_compact', prefix.to_s].reject(&:empty?).join('.')
   end
 end
