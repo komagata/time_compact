@@ -122,31 +122,31 @@ class TestTimeCompact < MiniTest::Test
 
     Time.stub(:now, time) do
       assert_equal [time, {}],
-                   @object.send(:time_compact_process_optional_args, []),
-                   'no optional args'
+        @object.send(:time_compact_process_optional_args, []),
+        'no optional args'
 
       assert_equal [time, { awesome_option: 'yaay!' }],
-                   @object.send(:time_compact_process_optional_args,
-                                [{ awesome_option: 'yaay!' }]),
-                   'only options hash is passed'
+        @object.send(:time_compact_process_optional_args,
+          [{ awesome_option: 'yaay!' }]),
+        'only options hash is passed'
     end
 
     assert_equal [time, {}],
-                 @object.send(:time_compact_process_optional_args,
-                              [time]),
-                 'only time is passed'
+      @object.send(:time_compact_process_optional_args, [time]),
+      'only time is passed'
 
     assert_equal [time, { fantastic_option: 'woohoo!!!' }],
-                 @object.send(:time_compact_process_optional_args,
-                              [time, { fantastic_option: 'woohoo!!!' }]),
-                 'time and options hash are passed'
+      @object.send(:time_compact_process_optional_args,
+        [time, { fantastic_option: 'woohoo!!!' }]),
+      'time and options hash are passed'
   end
 
   def test_time_compact_i18n_key
-    assert_equal 'time_compact', @object.send(:time_compact_i18n_key),
-                 'no prefix'
+    assert_equal 'time_compact',
+      @object.send(:time_compact_i18n_key),
+      'no prefix'
     assert_equal 'time_compact.prefix',
-                 @object.send(:time_compact_i18n_key, 'prefix'),
-                 'with prefix'
+      @object.send(:time_compact_i18n_key, 'prefix'),
+      'with prefix'
   end
 end
