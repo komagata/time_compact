@@ -61,6 +61,36 @@ You can customize the format.
         same_hour:  '%1M分'
         other:      '%Y年%1m月%1d日'
 
+### Options
+
+`time_compact` method takes `options` on the last args.
+
+#### `i18n_key_prefix`
+
+Prefix to i18n keys. Usage:
+
+```
+# config/locales/en.yml:
+en:
+  time_compact:
+    same_year:  '%1m/%1d'
+    same_month: '%1m/%1d'
+    same_day:   '%1H:%M'
+    same_hour:  '%1M min'
+    other:      '%Y/%1m/%1d'
+    verbose: # <- Set sub locales here!
+      same_year:  '%1m/%1d %1H:%M'
+      same_month: '%1m/%1d %1H:%M'
+      same_day:   '%1H:%M'
+      same_hour:  '%1M min'
+      other:      '%Y/%1m/%1d %1H:%M'
+```
+
+```
+# in the view
+<%= time_compact(@post.created_at, i18n_key_prefix: :verbose) %>
+```
+
 ## Contributing
 
 1. Fork it ( https://github.com/komagata/time_compact/fork )
