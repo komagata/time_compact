@@ -161,42 +161,43 @@ class TestTimeCompact < MiniTest::Test
   end
 
   def test_time_compact_i18n_key_prefix
-    assert_equal 'time_compact', @object.send(:time_compact_i18n_key_prefix),
-                 'no prefix'
+    assert_equal 'time_compact',
+      @object.send(:time_compact_i18n_key_prefix),
+      'no prefix'
     assert_equal 'time_compact.additional',
-                 @object.send(:time_compact_i18n_key_prefix, 'additional'),
-                 'with prefix'
+      @object.send(:time_compact_i18n_key_prefix, 'additional'),
+      'with prefix'
   end
 
   def test_time_compact_times_same_to
     assert_equal :hour,
-                 @object.send(:time_compact_times_same_to,
-                              Time.new(2014, 12, 12, 10, 00),
-                              Time.new(2014, 12, 12, 10, 30)),
-                 'same to hour'
+      @object.send(:time_compact_times_same_to,
+        Time.new(2014, 12, 12, 10, 00),
+        Time.new(2014, 12, 12, 10, 30)),
+      'same to hour'
 
     assert_equal :day,
-                 @object.send(:time_compact_times_same_to,
-                              Time.new(2014, 12, 12, 10, 00),
-                              Time.new(2014, 12, 12, 11, 00)),
-                 'same to day'
+      @object.send(:time_compact_times_same_to,
+        Time.new(2014, 12, 12, 10, 00),
+        Time.new(2014, 12, 12, 11, 00)),
+      'same to day'
 
     assert_equal :month,
-                 @object.send(:time_compact_times_same_to,
-                              Time.new(2014, 12, 12, 10, 00),
-                              Time.new(2014, 12, 24, 10, 00)),
-                 'same to month'
+      @object.send(:time_compact_times_same_to,
+        Time.new(2014, 12, 12, 10, 00),
+        Time.new(2014, 12, 24, 10, 00)),
+      'same to month'
 
     assert_equal :year,
-                 @object.send(:time_compact_times_same_to,
-                              Time.new(2014, 11, 12, 10, 00),
-                              Time.new(2014, 12, 12, 10, 00)),
-                 'same to year'
+      @object.send(:time_compact_times_same_to,
+        Time.new(2014, 11, 12, 10, 00),
+        Time.new(2014, 12, 12, 10, 00)),
+      'same to year'
 
     assert_equal :none,
-                 @object.send(:time_compact_times_same_to,
-                              Time.new(2014, 12, 12, 10, 00),
-                              Time.new(2015, 12, 12, 10, 00)),
-                 'same to none'
+      @object.send(:time_compact_times_same_to,
+        Time.new(2014, 12, 12, 10, 00),
+        Time.new(2015, 12, 12, 10, 00)),
+      'same to none'
   end
 end
