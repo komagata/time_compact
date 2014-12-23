@@ -122,24 +122,42 @@ class TestTimeCompact < MiniTest::Test
 
     Time.stub(:now, time) do
       assert_equal [time, {}],
-                   @object.send(:time_compact_process_optional_args, []),
-                   'no optional args'
+        @object.send(:time_compact_process_optional_args, []),
+        'no optional args'
 
       assert_equal [time, { awesome_option: 'yaay!' }],
-                   @object.send(:time_compact_process_optional_args,
-                                [{ awesome_option: 'yaay!' }]),
-                   'only options hash is passed'
+        @object.send(:time_compact_process_optional_args,
+          [{ awesome_option: 'yaay!' }]),
+        'only options hash is passed'
     end
 
     assert_equal [time, {}],
-                 @object.send(:time_compact_process_optional_args,
-                              [time]),
-                 'only time is passed'
+      @object.send(:time_compact_process_optional_args, [time]),
+      'only time is passed'
 
     assert_equal [time, { fantastic_option: 'woohoo!!!' }],
-                 @object.send(:time_compact_process_optional_args,
-                              [time, { fantastic_option: 'woohoo!!!' }]),
-                 'time and options hash are passed'
+      @object.send(:time_compact_process_optional_args,
+        [time, { fantastic_option: 'woohoo!!!' }]),
+      'time and options hash are passed'
+  end
+
+  def test_time_compact_i18n_key
+    assert_equal 'time_compact.other',
+      @object.send(:time_compact_i18n_key, :none),
+      'for same to :none with no prefix'
+    assert_equal 'time_compact.same_hour',
+      @object.send(:time_compact_i18n_key, :hour),
+      'for same to :hour with no prefix'
+    assert_equal 'time_compact.same_day',
+      @object.send(:time_compact_i18n_key, :day),
+      'for same to :day with no prefix'
+
+    assert_equal 'time_compact.prefix.same_hour',
+      @object.send(:time_compact_i18n_key, :hour, 'prefix'),
+      'for same to :hour with no prefix'
+    assert_equal 'time_compact.prefix.same_day',
+      @object.send(:time_compact_i18n_key, :day, 'prefix'),
+      'for same to :day with no prefix'
   end
 
   def test_time_compact_i18n_key_prefix
