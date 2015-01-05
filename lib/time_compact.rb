@@ -41,11 +41,11 @@ module TimeCompact
     ['time_compact', additional.to_s].reject(&:empty?).join('.')
   end
 
-  def time_compact_times_same_to(base_time, compair_time)
+  def time_compact_times_same_to(base_time, compare_time)
     kinds = [:none, :year, :month, :day, :hour]
     kinds.each_with_index do |kind, index|
       next if kind == :none
-      break kinds[index - 1] if base_time.send(kind) != compair_time.send(kind)
+      break kinds[index - 1] if base_time.send(kind) != compare_time.send(kind)
       break kinds.last if kind == kinds.last
     end
   end
