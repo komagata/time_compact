@@ -14,25 +14,9 @@ module TimeCompact
     locale_dir = File.expand_path('../../locale', __FILE__)
     I18n.enforce_available_locales = true
     I18n.load_path += Dir["#{locale_dir}/*.yml"]
-    messages = I18n.t(time_compact_i18n_key(opts[:i18n_key_prefix]))
-
-    if time.year == now.year
-      if time.month == now.month
-        if time.day == now.day
-          if time.hour == now.hour
-            time.strftime(messages[:same_hour])
-          else
-            time.strftime(messages[:same_day])
-          end
-        else
-          time.strftime(messages[:same_month])
-        end
-      else
-        time.strftime(messages[:same_year])
-      end
-    else
-      time.strftime(messages[:other])
-    end
+    same_to = time_compact_times_same_to(time, now)
+    message = I18n.t(time_compact_i18n_key(same_to, opts[:i18n_key_prefix]))
+    time.strftime(message)
   end
 
   private
@@ -48,7 +32,21 @@ module TimeCompact
     end
   end
 
-  def time_compact_i18n_key(prefix = '')
-    ['time_compact', prefix.to_s].reject(&:empty?).join('.')
+  def time_compact_i18n_key(same_to, additional = '')
+    last_key = (same_to == :none) ? 'other' : "same_#{same_to}"
+    time_compact_i18n_key_prefix(additional) + '.' + last_key
+  end
+
+  def time_compact_i18n_key_prefix(additional = '')
+    ['time_compact', additional.to_s].reject(&:empty?).join('.')
+  end
+
+  def time_compact_times_same_to(base_time, compare_time)
+    kinds = [:none, :year, :month, :day, :hour]
+    kinds.each_with_index do |kind, index|
+      next if kind == :none
+      break kinds[index - 1] if base_time.send(kind) != compare_time.send(kind)
+      break kinds.last if kind == kinds.last
+    end
   end
 end
